@@ -5,6 +5,7 @@ God.watch do |w|
   w.start = "<%= process.command %>"
   w.keepalive
   w.group = "<%= app  %>"
+  w.dir = "<%= engine.directory %>" 
     <%= extension(process.name) %>
 end
   <% end %>

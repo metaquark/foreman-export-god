@@ -7,8 +7,8 @@ Gem::Specification.new do |s|
   s.authors     = ["Bob Potter"]
   s.email       = ["bobby.potter@gmail.com"]
   s.homepage    = ""
-  s.summary     = %q{TODO: Write a gem summary}
-  s.description = %q{TODO: Write a gem description}
+  s.summary     = %q{Add the ability to export god config files to foreman}
+  s.description = %q{Add the ability to export god config files to foreman}
 
   s.rubyforge_project = "foreman-export-god"
 

@@ -9,13 +9,11 @@ class Foreman::Export::God < Foreman::Export::Base
     app = self.app || File.basename(engine.directory)
 
     base_config   = ERB.new(base_template).result(binding)
-    puts base_config
 
     write_file(File.join(location, "#{app}.god"), base_config)
   end
 
   def extension(process_name)
-    p extensions
     if extensions.has_key?(process_name)
       ERB.new(extension_template(process_name)).result(binding)
     else

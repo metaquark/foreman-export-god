@@ -1,10 +1,9 @@
 # -*- encoding: utf-8 -*-
 $:.push File.expand_path("../lib", __FILE__)
-require "foreman-export-god/version"
 
 Gem::Specification.new do |s|
   s.name        = "foreman-export-god"
-  s.version     = Foreman::Export::God::VERSION
+  s.version     = "0.0.1"
   s.authors     = ["Bob Potter"]
   s.email       = ["bobby.potter@gmail.com"]
   s.homepage    = ""

@@ -1,9 +1,3 @@
-require "foreman-export-god/version"
+$:.unshift(File.dirname(__FILE__))
 
-module Foreman
-  module Export
-    module God
-      # Your code goes here...
-    end
-  end
-end
+require 'foreman/export/god'

@@ -4,7 +4,7 @@ God.watch do |w|
   w.name = "<%= "#{process.name}-#{num}" %>"
   w.start = "<%= process.command %>"
   w.keepalive
-  w.group = "<%= process.name %>"
+  w.group = "<%= app  %>"
     <%= extension(process.name) %>
 end
   <% end %>

@@ -1,5 +1,5 @@
   # Unicorn specific
   w.pid_file = "<%= engine.directory + "/tmp/pids/unicorn.pid" %>"
   w.stop = "kill -QUIT `cat #{w.pid_file}`"
-  w.restart = "kill -USR2 `cat #{w.pid_file}` && sleep 20 && kill -QUIT #{w.pid_file}.oldbin"
+  w.restart = "kill -USR2 `cat #{w.pid_file}` && sleep 20 && kill -QUIT `cat #{w.pid_file}.oldbin`"
   w.behavior(:clean_pid_file)

@@ -8,6 +8,7 @@ class Foreman::Export::God < Foreman::Export::Base
 
     app = self.app || File.basename(engine.directory)
 
+    base_template = export_template("god", "base.god.erb", template_root)
     base_config   = ERB.new(base_template).result(binding)
 
     write_file(File.join(location, "#{app}.god"), base_config)
@@ -22,16 +23,8 @@ class Foreman::Export::God < Foreman::Export::Base
   end
 
   private
-  def template_path
-    Pathname.new(File.dirname(__FILE__)).join('..', '..', '..', 'data', 'templates')
-  end
-
-  def base_template
-    IO.read(base_template_path)
-  end
-
-  def base_template_path
-    base_template = File.join(template_path, "base.god.erb")
+  def template_root
+    template_root = self.template || File.expand_path("../../../../data/templates", __FILE__)
   end
 
   def extension_template(name)
@@ -44,7 +37,7 @@ class Foreman::Export::God < Foreman::Export::Base
 
   def load_extensions
     h = {}
-    Dir.glob(template_path.join('extensions') + "*.erb").each do |extension_path|
+    Dir.glob(File.join(template_root, 'extensions',"*.erb")).each do |extension_path|
       extension_name = extension_path.split("/").last.match(/(.*?).god.erb$/)[1]
       h[extension_name] = extension_path
     end

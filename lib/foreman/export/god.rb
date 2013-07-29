@@ -29,8 +29,10 @@ class Foreman::Export::God < Foreman::Export::Base
       root = self.options[:template].split('/')
       root.delete_at(root.count-1)
       root = root.join '/'
+    else
+      root = File.expand_path('../../../../data/templates', __FILE__)
     end
-    template_root = root || File.expand_path('../../../../data/templates', __FILE__)
+    root
   end
 
   def extension_template(name)

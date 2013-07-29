@@ -8,7 +8,7 @@ class Foreman::Export::God < Foreman::Export::Base
 
     app = self.app || File.basename(engine.directory)
 
-    base_template = export_template("god", "base.god.erb", template_root)
+    base_template = export_template(self.options[:template] ? self.options[:template] : File.join(template_root, 'base.god.erb'))
     base_config   = ERB.new(base_template).result(binding)
 
     write_file(File.join(location, "#{app}.god"), base_config)
@@ -18,13 +18,19 @@ class Foreman::Export::God < Foreman::Export::Base
     if extensions.has_key?(process_name)
       ERB.new(extension_template(process_name)).result(binding)
     else
-      ""
+      ''
     end
   end
 
   private
   def template_root
-    template_root = self.template || File.expand_path("../../../../data/templates", __FILE__)
+    root = nil
+    if self.options[:template]
+      root = self.options[:template].split('/')
+      root.delete_at(root.count-1)
+      root = root.join '/'
+    end
+    template_root = root || File.expand_path('../../../../data/templates', __FILE__)
   end
 
   def extension_template(name)

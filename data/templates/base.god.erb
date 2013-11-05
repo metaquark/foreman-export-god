@@ -2,7 +2,7 @@
   <% 1.upto(engine.formation[name]) do |num| %>
 God.watch do |w|
   w.name = "<%= "#{name}-#{num}" %>"
-  w.env = { "RAILS_ENV" => "production", "PORT" => engine.port_for(process, num) }
+  w.env = { "RAILS_ENV" => "production", "PORT" => <%= engine.port_for(process, num) %> }
   w.start = "exec <%= process.command %>"
   w.keepalive
   w.group = "<%= app  %>"
